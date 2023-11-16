@@ -1,0 +1,12 @@
+mutation Refresh {
+  refresh {
+    access_token
+    refresh_token
+    user {
+      email
+      profile {
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+mutation Login ($authInput: AuthInput) {
+  login(authInput: $authInput) {
+    access_token
+    refresh_token
+    user {
+      email
+      profile {
+        name
+      }
+    }
+  }
+}

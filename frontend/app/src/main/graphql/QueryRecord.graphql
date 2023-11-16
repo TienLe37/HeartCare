@@ -1,0 +1,13 @@
+query QueryRecord($email: String!) {
+  user(email: $email) {
+    record {
+      height
+      weight
+      bloodType
+      HealthProblems
+    }
+    profile {
+      dob
+    }
+  }
+}

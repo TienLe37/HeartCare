@@ -1,0 +1,30 @@
+scalar DateTime
+
+type History {
+  id:        Int
+  userId:    Int
+  bpm:       Int
+  createdAt: DateTime
+}
+
+type HistoryStatistics {
+  average: Int
+  max:     Int
+  min:     Int
+  chartData: [ChartData]
+}
+
+type ChartData {
+  value: Float
+  bpm:  Int
+}
+
+type Query {
+  history(email: String!): [History]
+  todayHistoryStatistics(email: String!): HistoryStatistics
+  weekHistoryStatistics(email: String!): HistoryStatistics
+}
+
+type Mutation {
+  createHistory(email: String!, bpm: Int!): History
+}

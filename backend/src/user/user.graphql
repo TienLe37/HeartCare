@@ -1,0 +1,27 @@
+scalar DateTime
+
+type User {
+  id: Int!
+  email: String!
+  password: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  profile: Profile
+  record: Record
+  refreshToken: String
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  email: String
+}
+
+type Query {
+  users: [User]!
+  user(email: String!): User!
+}
+

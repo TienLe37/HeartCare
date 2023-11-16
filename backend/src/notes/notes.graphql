@@ -1,0 +1,33 @@
+type Note {
+  id:        Int
+  userId:    Int
+  content:   String
+  startDate: DateTime
+  endDate:  DateTime
+}
+
+input NoteInput {
+  email: String
+  content: String
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input NoteUpdateInput {
+  id: Int
+  content: String
+  startDate: DateTime
+  endDate: DateTime
+}
+
+type Query {
+  note(email: String!): [Note]
+  noteById(id: Int!): Note
+  findNotes(email: String!, date: DateTime!): [Note]
+}
+
+type Mutation {
+  createNote(noteInput: NoteInput!): Note
+  updateNote(noteUpdateInput: NoteUpdateInput!): Note
+  deleteNote(id: Int!): Boolean
+}

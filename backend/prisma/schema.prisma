@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  refreshToken String?
+  profile Profile?
+  record Record?
+  history History[]
+  note Note[]
+  notification Notification[]
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  name      String?
+  sex       String?
+  dob       DateTime?
+  phone     String?
+  address   String?
+  nationalID String?
+  avatar String?
+}
+
+model Record {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  height    Float?
+  weight    Float?
+  BMI       Float?
+  bloodType String?
+  HealthProblems String?
+}
+
+model History {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  bpm       Int
+  createdAt DateTime  @default(now())
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  content   String
+  startDate DateTime
+  endDate   DateTime
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  user      User?     @relation(fields: [userId], references: [id])
+  title     String
+  content   String    @db.Text
+  createdAt DateTime  @default(now())
+}
+
+// model Doctor {
+//   id         Int     @id @default(autoincrement())
+//   specialty  String?
+//   name       String?
+//   userId     Int @unique
+//   user       User    @relation(fields: [userId], references: [id])
+//   appointments Appointment[]
+//   buiding    Building? @relation(fields: [buildingId], references: [id])
+//   buildingId Int?
+// } 
+
+// model Building {
+//   id Int @id @default(autoincrement())
+//   name String
+//   address String
+//   doctors Doctor[]
+// }
+
+// model Patient {
+//   id       Int        @id @default(autoincrement())
+//   name String?
+//   gender   String?
+//   dob      DateTime?
+//   address  String?
+//   userId   Int @unique
+//   user     User       @relation(fields: [userId], references: [id])
+//   appointments Appointment[]
+//   medicalRecords MedicalRecord[]
+// }
+
+
+// model Appointment {
+//   id        Int       @id @default(autoincrement())
+//   patient   Patient      @relation(fields: [patientId], references: [userId])
+//   patientId Int
+//   doctor    Doctor    @relation(fields: [doctorId], references: [userId])
+//   doctorId  Int
+//   date      DateTime
+// 

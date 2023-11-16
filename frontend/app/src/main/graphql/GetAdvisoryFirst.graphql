@@ -1,0 +1,3 @@
+mutation GetAdvisoryFirst($email: String!, $lang: String!) {
+  getAdvisoryFirst(email: $email, lang: $lang)
+}

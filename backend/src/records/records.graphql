@@ -1,0 +1,25 @@
+type Record {
+  height:    Float
+  weight:    Float
+  BMI:       Float
+  bloodType: String
+  userId:  Int
+  HealthProblems: String
+}
+
+input UpdateRecordInput {
+  email:  String!
+  height:    Float
+  weight:    Float
+  BMI:       Float
+  bloodType: String
+  HealthProblems: String
+}
+
+type Query {
+  record(email: String!): Record
+}
+
+type Mutation {
+  updateRecord(updateRecordInput: UpdateRecordInput!): Record!
+}

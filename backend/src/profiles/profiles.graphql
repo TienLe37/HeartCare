@@ -1,0 +1,31 @@
+scalar DateTime
+
+type Profile {
+  name:      String
+  sex:       String
+  dob:       DateTime
+  phone:     String
+  address:   String
+  nationalID: String
+  userId:    Int
+  avatar: String
+}
+
+input UpdateProfileInput {
+  email: String!
+  name:      String
+  sex:       String
+  dob:       String
+  phone:     String
+  address:   String
+  nationalID: String
+  avatar: String
+}
+
+type Query {
+  profile(email: String!): Profile
+}
+
+type Mutation {
+  updateProfile(updateProfileInput: UpdateProfileInput!): Profile!
+  }

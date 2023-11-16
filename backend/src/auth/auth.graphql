@@ -1,0 +1,22 @@
+type LoginResponse {
+  access_token: String!
+  refresh_token: String!
+  user: User!
+}
+
+input AuthInput {
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  login(authInput: AuthInput): LoginResponse!
+  signup(authInput: AuthInput): LoginResponse!
+  logout(email: String!): Boolean!
+  refresh: LoginResponse!
+  forgotPassword(email: String!): Boolean!
+  confirmForgotPassword(email: String!, token: String!): Boolean!
+  resetPasswordConfirmed(email: String!, newPassword: String!): LoginResponse!
+  changePassword(email: String!, oldPassword: String!, newPassword: String!): Boolean!
+  registerWithSocial(email: String!, name: String): LoginResponse!
+}
